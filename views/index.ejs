@@ -1,0 +1,30 @@
+<%- include("partials/header") -%>
+
+
+  <div class="box" id="heading">
+    <h1> <%= heading %> </h1>
+  </div>
+
+  <div class="box">
+    <%  items.forEach((item) => { %>
+        <form action="/delete" method="post">
+            <div class="item">
+                <input type="checkbox" name="checkBox" value="<%= item.id%>" onChange="this.form.submit()">
+                <p><%= item.name %></p>
+            </div>
+            <input type="hidden" name="listName" value="<%= heading %>">
+        </form>
+    <% }) %>
+
+      <form class="item" action="/" method="post">
+        <input type="text" name="newItem" placeholder="Add new item" autocomplete="off">
+        <button type="submit" name="list" value="<%= heading %>">+</button>
+      </form>
+  </div>
+  <div class="box" id="bottom" >
+    <input id="newList" type="text" name="newList">
+    <a id="search" href="/"><h2> Create new todo list </h2></a>
+  </div>
+
+
+<%- include("partials/footer") -%>
